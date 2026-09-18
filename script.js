@@ -1,100 +1,67 @@
 /* =========================
-   MOBILE MENU
+   MOBILE NAVBAR
 ========================= */
 
 const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+const navMenu = document.getElementById("navMenu");
 
-menuBtn.addEventListener("click", function () {
+if (menuBtn && navMenu) {
 
-    navLinks.classList.toggle("active");
+    menuBtn.addEventListener("click", function () {
 
-    const icon = menuBtn.querySelector("i");
-
-    if (navLinks.classList.contains("active")) {
-
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-xmark");
-
-    } else {
-
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
-
-    }
-
-});
-
-
-/* =========================
-   CLOSE MENU AFTER CLICK
-========================= */
-
-const navigationLinks = document.querySelectorAll(".nav-links a");
-
-navigationLinks.forEach(function (link) {
-
-    link.addEventListener("click", function () {
-
-        navLinks.classList.remove("active");
+        navMenu.classList.toggle("active");
 
         const icon = menuBtn.querySelector("i");
 
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
+        if (navMenu.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+        } else {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
 
     });
 
-});
+
+    // Close menu when a link is clicked
+
+    const navLinks = navMenu.querySelectorAll("a");
+
+    navLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            navMenu.classList.remove("active");
+
+            const icon = menuBtn.querySelector("i");
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        });
+
+    });
+}
 
 
 /* =========================
    CONTACT FORM → WHATSAPP
 ========================= */
 
-const contactForm = document.getElementById("contactForm");
-
-const formMessage = document.getElementById("formMessage");
-
-
-contactForm.addEventListener("submit", function (event) {
+function sendToWhatsApp(event) {
 
     event.preventDefault();
 
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-    /* Get form values */
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const subject =
-        document.getElementById("subject").value.trim();
-
-    const message =
-        document.getElementById("message").value.trim();
-
-
-    /* Check empty fields */
-
-    if (
-        name === "" ||
-        email === "" ||
-        subject === "" ||
-        message === ""
-    ) {
-
-        formMessage.textContent =
-            "Please fill in all the fields.";
-
+    if (!name || !email || !subject || !message) {
+        alert("Please fill in all the fields.");
         return;
-
     }
-
-
-    /* Create WhatsApp message */
 
     const whatsappMessage =
 `Hello Kalika Devi Astro,
@@ -106,75 +73,25 @@ Subject: ${subject}
 Message:
 ${message}`;
 
+    const encodedMessage = encodeURIComponent(whatsappMessage);
 
-    /* Encode message */
-
-    const encodedMessage =
-        encodeURIComponent(whatsappMessage);
-
-
-    /* Owner's WhatsApp number */
-
-    const ownerNumber =
-        "919032266262";
-
-
-    /* Create WhatsApp URL */
+    const ownerNumber = "919686948887";
 
     const whatsappURL =
         `https://wa.me/${ownerNumber}?text=${encodedMessage}`;
 
-
-    /* Open WhatsApp */
-
     window.open(whatsappURL, "_blank");
 
-
-    /* Show message */
-
-    formMessage.textContent =
-        "Opening WhatsApp...";
-
-
-    /* Clear form */
-
-    contactForm.reset();
-
-});
-
-
-/* =========================
-   HEADER SHADOW ON SCROLL
-========================= */
-
-const header =
-    document.querySelector(".header");
-
-
-window.addEventListener("scroll", function () {
-
-    if (window.scrollY > 30) {
-
-        header.style.boxShadow =
-            "0 5px 20px rgba(0, 0, 0, 0.08)";
-
-    } else {
-
-        header.style.boxShadow =
-            "none";
-
-    }
-
-});
+    event.target.reset();
+}
 
 
 /* =========================
    CURRENT YEAR
 ========================= */
 
-const currentYear =
-    new Date().getFullYear();
+const yearElement = document.getElementById("year");
 
-
-document.getElementById("currentYear").textContent =
-    currentYear;
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}

@@ -1,5 +1,5 @@
 /* =========================
-   RESET
+   RESET & GLOBAL
 ========================= */
 
 * {
@@ -14,9 +14,10 @@ html {
 
 body {
     font-family: "Poppins", sans-serif;
-    color: #333;
-    background: #fff;
+    color: var(--text);
+    background: var(--white);
     line-height: 1.7;
+    overflow-x: hidden;
 }
 
 a {
@@ -26,13 +27,19 @@ a {
 
 img {
     max-width: 100%;
+    height: auto;
     display: block;
 }
 
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
 .container {
-    width: 90%;
-    max-width: 1150px;
-    margin: auto;
+    width: min(90%, 1150px);
+    margin: 0 auto;
 }
 
 .section {
@@ -68,20 +75,23 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.97);
+
+    background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid var(--border);
+
     z-index: 1000;
 }
 
 .nav-container {
-    width: 90%;
-    max-width: 1150px;
-    margin: auto;
+    width: min(90%, 1150px);
     min-height: 75px;
+    margin: 0 auto;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 25px;
 }
 
 .logo {
@@ -89,11 +99,13 @@ img {
     font-size: 22px;
     font-weight: 700;
     color: var(--primary);
+    white-space: nowrap;
 }
 
 .nav-menu {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 28px;
 }
 
@@ -102,6 +114,7 @@ img {
     font-weight: 500;
     color: #444;
     transition: 0.3s ease;
+    white-space: nowrap;
 }
 
 .nav-menu > a:not(.nav-btn):hover {
@@ -111,10 +124,14 @@ img {
 .nav-btn {
     background: var(--primary);
     color: var(--white);
+
     padding: 10px 18px;
     border-radius: 5px;
+
     font-size: 13px;
     font-weight: 600;
+    white-space: nowrap;
+
     transition: 0.3s ease;
 }
 
@@ -130,7 +147,9 @@ img {
 
 .hero {
     min-height: 100vh;
-    padding: 160px 8% 100px;
+    min-height: 100svh;
+
+    padding: 150px 8% 100px;
 
     position: relative;
     overflow: hidden;
@@ -139,8 +158,16 @@ img {
     align-items: center;
 
     background:
-        radial-gradient(circle at 80% 30%, rgba(200, 155, 60, 0.12), transparent 30%),
-        linear-gradient(135deg, #fffaf3, #f7eee4);
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(122, 31, 61, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #fffaf3,
+            #f7eee4
+        );
 }
 
 .hero-overlay {
@@ -152,35 +179,45 @@ img {
 .hero-content {
     position: relative;
     z-index: 2;
+
+    width: 100%;
     max-width: 650px;
 }
 
 .hero-label,
 .section-label {
     color: var(--gold);
+
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 2px;
+
     margin-bottom: 15px;
 }
 
 .hero h1 {
     font-family: "Cinzel", serif;
-    font-size: clamp(42px, 6vw, 72px);
+
+    font-size: clamp(40px, 6vw, 72px);
     line-height: 1.15;
+
     color: var(--primary);
+
     margin-bottom: 25px;
 }
 
 .hero-text {
     max-width: 580px;
+
     color: #666;
     font-size: 16px;
+
     margin-bottom: 32px;
 }
 
 .hero-buttons {
     display: flex;
+    align-items: center;
     gap: 15px;
     flex-wrap: wrap;
 }
@@ -212,9 +249,6 @@ img {
     cursor: pointer;
 }
 
-
-/* Call / Primary */
-
 .primary-btn {
     background: var(--primary);
     color: var(--white);
@@ -227,9 +261,6 @@ img {
     transform: translateY(-2px);
 }
 
-
-/* Secondary */
-
 .secondary-btn {
     background: transparent;
     color: var(--primary);
@@ -241,9 +272,6 @@ img {
     color: var(--white);
     transform: translateY(-2px);
 }
-
-
-/* WhatsApp */
 
 .whatsapp-btn {
     background: var(--whatsapp);
@@ -258,85 +286,364 @@ img {
 }
 
 
+/* =====================================================
+   PROFESSIONAL ASTROLOGY DECORATION
+===================================================== */
+
+.astrology-wheel {
+    position: absolute;
+
+    right: 6%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 470px;
+    height: 470px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
 /* =========================
-   HERO DECORATION
+   OUTER ZODIAC RING
 ========================= */
 
-.moon {
+.zodiac-ring {
     position: absolute;
-    right: 12%;
-    top: 25%;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-}
 
-.moon-circle {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle at 35% 35%,
-        #fff4c9,
-        #d5ad50
-    );
-
-    box-shadow:
-        0 0 70px rgba(200, 155, 60, 0.25);
-}
-
-.orbit {
-    position: absolute;
-    border: 1px solid rgba(122, 31, 61, 0.15);
-    border-radius: 50%;
-}
-
-.orbit-one {
     width: 400px;
     height: 400px;
-    right: 5%;
-    top: 15%;
-    transform: rotate(20deg);
+
+    border: 1.5px solid rgba(122, 31, 61, 0.38);
+
+    border-radius: 50%;
+
+    animation: rotateZodiac 55s linear infinite;
+
+    box-shadow:
+        0 0 25px rgba(122, 31, 61, 0.08),
+        inset 0 0 25px rgba(122, 31, 61, 0.04);
 }
 
-.orbit-two {
-    width: 500px;
-    height: 230px;
-    right: 0;
-    top: 28%;
-    transform: rotate(-25deg);
-}
 
-.stars span {
+/* Inner ring */
+
+.zodiac-ring::before {
+    content: "";
+
     position: absolute;
-    color: var(--gold);
-    font-size: 20px;
+
+    inset: 25px;
+
+    border: 1px solid rgba(122, 31, 61, 0.22);
+
+    border-radius: 50%;
 }
 
-.stars span:nth-child(1) {
-    top: 20%;
-    right: 40%;
+
+/* Decorative inner dashed ring */
+
+.zodiac-ring::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 68px;
+
+    border: 1px dashed rgba(122, 31, 61, 0.18);
+
+    border-radius: 50%;
 }
 
-.stars span:nth-child(2) {
-    top: 65%;
-    right: 20%;
+
+/* =========================
+   ZODIAC SYMBOLS
+========================= */
+
+.zodiac-ring span {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 38px;
+    height: 38px;
+
+    margin-left: -19px;
+    margin-top: -19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+
+    font-family: serif;
+    font-size: 22px;
+    font-weight: 600;
+
+    background: rgba(255, 250, 243, 0.92);
+
+    border: 1px solid rgba(122, 31, 61, 0.15);
+
+    border-radius: 50%;
+
+    text-shadow:
+        0 2px 5px rgba(122, 31, 61, 0.25);
+
+    z-index: 4;
 }
 
-.stars span:nth-child(3) {
-    top: 35%;
-    right: 8%;
+
+/* =========================
+   ZODIAC POSITIONS
+========================= */
+
+.zodiac-ring span:nth-child(1) {
+    transform: rotate(0deg) translateY(-200px) rotate(0deg);
 }
 
-.stars span:nth-child(4) {
-    top: 75%;
-    right: 42%;
+.zodiac-ring span:nth-child(2) {
+    transform: rotate(30deg) translateY(-200px) rotate(-30deg);
 }
 
-.stars span:nth-child(5) {
-    top: 15%;
-    right: 15%;
+.zodiac-ring span:nth-child(3) {
+    transform: rotate(60deg) translateY(-200px) rotate(-60deg);
+}
+
+.zodiac-ring span:nth-child(4) {
+    transform: rotate(90deg) translateY(-200px) rotate(-90deg);
+}
+
+.zodiac-ring span:nth-child(5) {
+    transform: rotate(120deg) translateY(-200px) rotate(-120deg);
+}
+
+.zodiac-ring span:nth-child(6) {
+    transform: rotate(150deg) translateY(-200px) rotate(-150deg);
+}
+
+.zodiac-ring span:nth-child(7) {
+    transform: rotate(180deg) translateY(-200px) rotate(-180deg);
+}
+
+.zodiac-ring span:nth-child(8) {
+    transform: rotate(210deg) translateY(-200px) rotate(-210deg);
+}
+
+.zodiac-ring span:nth-child(9) {
+    transform: rotate(240deg) translateY(-200px) rotate(-240deg);
+}
+
+.zodiac-ring span:nth-child(10) {
+    transform: rotate(270deg) translateY(-200px) rotate(-270deg);
+}
+
+.zodiac-ring span:nth-child(11) {
+    transform: rotate(300deg) translateY(-200px) rotate(-300deg);
+}
+
+.zodiac-ring span:nth-child(12) {
+    transform: rotate(330deg) translateY(-200px) rotate(-330deg);
+}
+
+
+/* =========================
+   ORBIT RINGS
+========================= */
+
+.astrology-wheel .orbit {
+    position: absolute;
+
+    border: 1px solid rgba(122, 31, 61, 0.18);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.astrology-wheel .orbit-one {
+    width: 420px;
+    height: 175px;
+
+    transform: rotate(35deg);
+}
+
+.astrology-wheel .orbit-two {
+    width: 420px;
+    height: 175px;
+
+    transform: rotate(-35deg);
+}
+
+
+/* =========================
+   CENTRAL BURGUNDY CIRCLE
+========================= */
+
+.astrology-wheel .moon {
+    position: relative;
+
+    width: 180px;
+    height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+
+
+/* FULL BURGUNDY CIRCLE */
+
+.astrology-wheel .moon-circle {
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #963653 0%,
+            #7a1f3d 45%,
+            #681831 75%,
+            #5c152d 100%
+        );
+
+    border: 2px solid rgba(122, 31, 61, 0.75);
+
+    box-shadow:
+        0 0 20px rgba(122, 31, 61, 0.25),
+        0 0 45px rgba(122, 31, 61, 0.18),
+        0 0 80px rgba(122, 31, 61, 0.10);
+}
+
+
+/* IMPORTANT:
+   No white crescent / no white circle */
+
+.astrology-wheel .moon-circle::after {
+    display: none;
+}
+
+
+/* Subtle center highlight */
+
+.astrology-wheel .moon-circle::before {
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    top: 25px;
+    left: 32px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        22px 35px 0 -3px rgba(255, 255, 255, 0.08),
+        45px 18px 0 -5px rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================
+   CELESTIAL STARS
+========================= */
+
+.celestial-star {
+    position: absolute;
+
+    color: var(--primary);
+
+    font-size: 18px;
+
+    z-index: 10;
+
+    text-shadow:
+        0 0 8px rgba(122, 31, 61, 0.55),
+        0 0 18px rgba(122, 31, 61, 0.25);
+
+    animation:
+        starGlow 2.8s ease-in-out infinite alternate;
+}
+
+
+/* Star positions */
+
+.star-1 {
+    top: 45px;
+    left: 85px;
+}
+
+.star-2 {
+    top: 115px;
+    right: 25px;
+}
+
+.star-3 {
+    bottom: 70px;
+    left: 35px;
+}
+
+.star-4 {
+    bottom: 35px;
+    right: 95px;
+}
+
+.star-5 {
+    top: 195px;
+    left: 5px;
+}
+
+.star-6 {
+    top: 18px;
+    right: 135px;
+}
+
+
+/* =========================
+   ASTROLOGY ANIMATIONS
+========================= */
+
+@keyframes rotateZodiac {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+@keyframes starGlow {
+
+    from {
+        opacity: 0.45;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
 }
 
 
@@ -353,15 +660,22 @@ img {
 .about h2,
 .contact h2 {
     font-family: "Cinzel", serif;
+
     color: var(--primary);
+
     font-size: clamp(30px, 4vw, 45px);
+
     line-height: 1.3;
+
     margin-bottom: 20px;
 }
 
 .intro-text {
+    width: 100%;
     max-width: 750px;
-    margin: auto;
+
+    margin: 0 auto;
+
     color: var(--muted);
 }
 
@@ -376,9 +690,18 @@ img {
 
 .about-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
     gap: 70px;
+
     align-items: center;
+}
+
+.about-content {
+    min-width: 0;
 }
 
 .about-content > p:not(.section-label) {
@@ -388,23 +711,34 @@ img {
 
 .about-features {
     display: grid;
+
     gap: 20px;
+
+    min-width: 0;
 }
 
 .feature-item {
     display: flex;
+
+    align-items: flex-start;
+
     gap: 18px;
+
     padding: 20px;
 
     background: var(--white);
+
     border: 1px solid var(--border);
+
     border-radius: 8px;
+
+    min-width: 0;
 }
 
 .feature-icon {
     width: 45px;
     height: 45px;
-    flex-shrink: 0;
+    min-width: 45px;
 
     display: flex;
     align-items: center;
@@ -412,8 +746,9 @@ img {
 
     border-radius: 50%;
 
-    background: rgba(200, 155, 60, 0.15);
-    color: var(--gold);
+    background: rgba(122, 31, 61, 0.08);
+
+    color: var(--primary);
 }
 
 .feature-item h4 {
@@ -442,8 +777,13 @@ img {
 
 .section-heading h2 {
     font-family: "Cinzel", serif;
+
     color: var(--primary);
+
     font-size: clamp(30px, 4vw, 45px);
+
+    line-height: 1.3;
+
     margin-bottom: 10px;
 }
 
@@ -453,22 +793,32 @@ img {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
     gap: 25px;
 }
 
 .service-card {
     padding: 35px 25px;
+
     background: var(--cream);
+
     border: 1px solid var(--border);
+
     border-radius: 8px;
+
     text-align: center;
+
     transition: 0.3s ease;
 }
 
 .service-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.07);
 }
 
 .service-icon {
@@ -484,6 +834,7 @@ img {
     border-radius: 50%;
 
     background: rgba(122, 31, 61, 0.08);
+
     color: var(--primary);
 
     font-size: 22px;
@@ -510,8 +861,18 @@ img {
 
 .contact-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
     gap: 70px;
+
+    align-items: start;
+}
+
+.contact-info {
+    min-width: 0;
 }
 
 .contact-info > p:not(.section-label) {
@@ -521,24 +882,34 @@ img {
 
 .contact-item {
     display: flex;
+
     align-items: flex-start;
+
     gap: 15px;
+
     margin-bottom: 25px;
+
+    min-width: 0;
 }
 
 .contact-item-icon {
     width: 45px;
     height: 45px;
-    flex-shrink: 0;
+    min-width: 45px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     background: var(--primary);
+
     color: var(--white);
 
     border-radius: 50%;
+}
+
+.contact-item > div:last-child {
+    min-width: 0;
 }
 
 .contact-item h4 {
@@ -549,6 +920,9 @@ img {
 .contact-item a {
     color: #555;
     font-size: 14px;
+
+    overflow-wrap: anywhere;
+
     transition: 0.3s ease;
 }
 
@@ -559,6 +933,8 @@ img {
 .contact-item p {
     color: #666;
     font-size: 14px;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -568,8 +944,13 @@ img {
 
 .contact-buttons {
     display: flex;
+
+    align-items: center;
+
     gap: 12px;
+
     flex-wrap: wrap;
+
     margin-top: 30px;
 }
 
@@ -579,42 +960,60 @@ img {
 ========================= */
 
 .contact-form-wrapper {
+    width: 100%;
+
     background: var(--white);
+
     padding: 35px;
+
     border: 1px solid var(--border);
+
     border-radius: 8px;
+
+    min-width: 0;
 }
 
 .contact-form {
+    width: 100%;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 18px;
 }
 
 .form-group {
     display: flex;
+
     flex-direction: column;
+
     gap: 7px;
 }
 
 .form-group label {
     color: var(--primary);
+
     font-size: 13px;
+
     font-weight: 600;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
+    max-width: 100%;
 
     padding: 13px 15px;
 
     border: 1px solid #ddd;
+
     border-radius: 5px;
 
     outline: none;
 
     font-family: "Poppins", sans-serif;
+
     font-size: 13px;
 
     transition: 0.3s ease;
@@ -627,6 +1026,7 @@ img {
 
 .form-group textarea {
     resize: vertical;
+    min-height: 130px;
 }
 
 .submit-btn {
@@ -636,7 +1036,9 @@ img {
 
 .form-note {
     text-align: center;
+
     color: var(--muted);
+
     font-size: 12px;
 }
 
@@ -647,8 +1049,11 @@ img {
 
 .footer {
     padding: 25px 0;
+
     background: #4e162a;
+
     color: rgba(255, 255, 255, 0.8);
+
     text-align: center;
 }
 
@@ -657,14 +1062,19 @@ img {
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   TABLET
+   769px - 1100px
+===================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+
+    .nav-container {
+        width: 92%;
+    }
 
     .nav-menu {
-        gap: 15px;
+        gap: 20px;
     }
 
     .hero {
@@ -672,92 +1082,807 @@ img {
         padding-right: 6%;
     }
 
-    .moon {
-        right: -80px;
-        opacity: 0.5;
+
+    /* Astrology */
+
+    .astrology-wheel {
+        right: 0;
+        width: 400px;
+        height: 400px;
+    }
+
+    .zodiac-ring {
+        width: 345px;
+        height: 345px;
+    }
+
+    .zodiac-ring span:nth-child(1) {
+        transform: rotate(0deg) translateY(-172px) rotate(0deg);
+    }
+
+    .zodiac-ring span:nth-child(2) {
+        transform: rotate(30deg) translateY(-172px) rotate(-30deg);
+    }
+
+    .zodiac-ring span:nth-child(3) {
+        transform: rotate(60deg) translateY(-172px) rotate(-60deg);
+    }
+
+    .zodiac-ring span:nth-child(4) {
+        transform: rotate(90deg) translateY(-172px) rotate(-90deg);
+    }
+
+    .zodiac-ring span:nth-child(5) {
+        transform: rotate(120deg) translateY(-172px) rotate(-120deg);
+    }
+
+    .zodiac-ring span:nth-child(6) {
+        transform: rotate(150deg) translateY(-172px) rotate(-150deg);
+    }
+
+    .zodiac-ring span:nth-child(7) {
+        transform: rotate(180deg) translateY(-172px) rotate(-180deg);
+    }
+
+    .zodiac-ring span:nth-child(8) {
+        transform: rotate(210deg) translateY(-172px) rotate(-210deg);
+    }
+
+    .zodiac-ring span:nth-child(9) {
+        transform: rotate(240deg) translateY(-172px) rotate(-240deg);
+    }
+
+    .zodiac-ring span:nth-child(10) {
+        transform: rotate(270deg) translateY(-172px) rotate(-270deg);
+    }
+
+    .zodiac-ring span:nth-child(11) {
+        transform: rotate(300deg) translateY(-172px) rotate(-300deg);
+    }
+
+    .zodiac-ring span:nth-child(12) {
+        transform: rotate(330deg) translateY(-172px) rotate(-330deg);
+    }
+
+    .astrology-wheel .orbit-one,
+    .astrology-wheel .orbit-two {
+        width: 350px;
+        height: 150px;
+    }
+
+    .astrology-wheel .moon {
+        width: 150px;
+        height: 150px;
+    }
+
+    .astrology-wheel .moon-circle {
+        width: 115px;
+        height: 115px;
     }
 
     .about-container,
     .contact-container {
-        grid-template-columns: 1fr;
         gap: 45px;
-    }
-
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 
-@media (max-width: 650px) {
+/* =====================================================
+   TABLET / SMALL LAPTOP
+   Up to 900px
+===================================================== */
+
+@media (max-width: 900px) {
 
     .section {
-        padding: 70px 0;
-    }
-
-    .nav-container {
-        min-height: 65px;
-    }
-
-    .logo {
-        font-size: 17px;
+        padding: 75px 0;
     }
 
     .nav-menu {
-        gap: 10px;
+        gap: 14px;
     }
 
     .nav-menu > a:not(.nav-btn) {
-        display: none;
+        font-size: 13px;
     }
 
     .nav-btn {
-        padding: 9px 13px;
-        font-size: 11px;
+        padding: 9px 14px;
+        font-size: 12px;
     }
 
     .hero {
-        min-height: 90vh;
-        padding: 130px 6% 80px;
+        min-height: auto;
+
+        padding-top: 145px;
+        padding-bottom: 100px;
+    }
+
+    .hero-content {
+        max-width: 600px;
+    }
+
+
+    /* Astrology moves behind hero */
+
+    .astrology-wheel {
+        right: -110px;
+        opacity: 0.18;
+    }
+
+
+    .about-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-features {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .services-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+   Up to 650px
+===================================================== */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+
+    /* =========================
+       MOBILE NAVBAR
+    ========================= */
+
+    .nav-container {
+        width: 94%;
+
+        min-height: 62px;
+
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    .nav-menu {
+        flex: 1;
+
+        display: flex;
+
+        justify-content: flex-end;
+
+        gap: 7px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-menu > a:not(.nav-btn) {
+        display: block;
+
+        font-size: 11px;
+
+        padding: 6px 3px;
+
+        flex-shrink: 0;
+    }
+
+    .nav-btn {
+        padding: 8px 10px;
+
+        font-size: 10px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* =========================
+       MOBILE HERO
+    ========================= */
+
+    .hero {
+        min-height: 100svh;
+
+        padding:
+            115px
+            6%
+            65px;
+
+        align-items: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-label,
+    .section-label {
+        font-size: 10px;
+
+        letter-spacing: 1.5px;
     }
 
     .hero h1 {
-        font-size: 40px;
+        font-size: clamp(34px, 10vw, 48px);
+
+        line-height: 1.15;
     }
 
     .hero-text {
         font-size: 14px;
+
+        line-height: 1.7;
+
+        margin-bottom: 25px;
     }
 
     .hero-buttons {
+        width: 100%;
+
         flex-direction: column;
+
+        align-items: stretch;
     }
 
     .hero-buttons a {
         width: 100%;
     }
 
-    .moon {
-        width: 180px;
-        height: 180px;
-        right: -60px;
-        top: 30%;
-        opacity: 0.35;
+
+    /* =========================
+       MOBILE ASTROLOGY
+    ========================= */
+
+    .astrology-wheel {
+
+        width: 270px;
+        height: 270px;
+
+        right: -70px;
+
+        top: 72%;
+
+        opacity: 0.16;
     }
 
-    .services-grid {
+    .zodiac-ring {
+
+        width: 225px;
+        height: 225px;
+    }
+
+    .zodiac-ring::before {
+        inset: 17px;
+    }
+
+    .zodiac-ring::after {
+        inset: 40px;
+    }
+
+    .zodiac-ring span {
+
+        width: 27px;
+        height: 27px;
+
+        margin-left: -13.5px;
+        margin-top: -13.5px;
+
+        font-size: 14px;
+
+        background: rgba(255, 250, 243, 0.9);
+    }
+
+    .zodiac-ring span:nth-child(1) {
+        transform: rotate(0deg) translateY(-112px) rotate(0deg);
+    }
+
+    .zodiac-ring span:nth-child(2) {
+        transform: rotate(30deg) translateY(-112px) rotate(-30deg);
+    }
+
+    .zodiac-ring span:nth-child(3) {
+        transform: rotate(60deg) translateY(-112px) rotate(-60deg);
+    }
+
+    .zodiac-ring span:nth-child(4) {
+        transform: rotate(90deg) translateY(-112px) rotate(-90deg);
+    }
+
+    .zodiac-ring span:nth-child(5) {
+        transform: rotate(120deg) translateY(-112px) rotate(-120deg);
+    }
+
+    .zodiac-ring span:nth-child(6) {
+        transform: rotate(150deg) translateY(-112px) rotate(-150deg);
+    }
+
+    .zodiac-ring span:nth-child(7) {
+        transform: rotate(180deg) translateY(-112px) rotate(-180deg);
+    }
+
+    .zodiac-ring span:nth-child(8) {
+        transform: rotate(210deg) translateY(-112px) rotate(-210deg);
+    }
+
+    .zodiac-ring span:nth-child(9) {
+        transform: rotate(240deg) translateY(-112px) rotate(-240deg);
+    }
+
+    .zodiac-ring span:nth-child(10) {
+        transform: rotate(270deg) translateY(-112px) rotate(-270deg);
+    }
+
+    .zodiac-ring span:nth-child(11) {
+        transform: rotate(300deg) translateY(-112px) rotate(-300deg);
+    }
+
+    .zodiac-ring span:nth-child(12) {
+        transform: rotate(330deg) translateY(-112px) rotate(-330deg);
+    }
+
+    .astrology-wheel .orbit-one,
+    .astrology-wheel .orbit-two {
+
+        width: 240px;
+        height: 105px;
+    }
+
+    .astrology-wheel .moon {
+
+        width: 110px;
+        height: 110px;
+    }
+
+    .astrology-wheel .moon-circle {
+
+        width: 78px;
+        height: 78px;
+    }
+
+    .astrology-wheel .moon-circle::before {
+        width: 7px;
+        height: 7px;
+
+        top: 15px;
+        left: 17px;
+
+        box-shadow:
+            12px 20px 0 -2px rgba(255, 255, 255, 0.08),
+            25px 10px 0 -3px rgba(255, 255, 255, 0.06);
+    }
+
+    .celestial-star {
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro h2,
+    .about h2,
+    .contact h2,
+    .section-heading h2 {
+
+        font-size: 30px;
+    }
+
+    .intro-text {
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-features {
         grid-template-columns: 1fr;
     }
 
+    .feature-item {
+        padding: 18px;
+    }
+
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .service-card {
+        padding: 28px 20px;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-container {
+        gap: 35px;
+    }
+
+    .contact-item {
+        gap: 12px;
+    }
+
+    .contact-item-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+        font-size: 13px;
+    }
+
     .contact-buttons {
+        width: 100%;
+
         flex-direction: column;
+
+        align-items: stretch;
     }
 
     .contact-buttons a {
         width: 100%;
     }
 
+
+    /* =========================
+       CONTACT FORM
+    ========================= */
+
     .contact-form-wrapper {
-        padding: 25px 20px;
+        padding: 25px 18px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        padding: 20px 10px;
+    }
+
+    .footer p {
+        font-size: 11px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+   Up to 380px
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 14px;
+    }
+
+    .nav-menu {
+        gap: 5px;
+    }
+
+    .nav-menu > a:not(.nav-btn) {
+        font-size: 10px;
+    }
+
+    .nav-btn {
+        padding: 7px 8px;
+        font-size: 9px;
+    }
+
+    .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-label,
+    .section-label {
+        font-size: 9px;
+    }
+
+
+    /* Smaller astrology */
+
+    .astrology-wheel {
+
+        width: 235px;
+        height: 235px;
+
+        right: -70px;
+    }
+
+    .zodiac-ring {
+
+        width: 195px;
+        height: 195px;
+    }
+
+    .zodiac-ring span {
+
+        width: 24px;
+        height: 24px;
+
+        margin-left: -12px;
+        margin-top: -12px;
+
+        font-size: 12px;
+    }
+
+    .zodiac-ring span:nth-child(1) {
+        transform: rotate(0deg) translateY(-97px) rotate(0deg);
+    }
+
+    .zodiac-ring span:nth-child(2) {
+        transform: rotate(30deg) translateY(-97px) rotate(-30deg);
+    }
+
+    .zodiac-ring span:nth-child(3) {
+        transform: rotate(60deg) translateY(-97px) rotate(-60deg);
+    }
+
+    .zodiac-ring span:nth-child(4) {
+        transform: rotate(90deg) translateY(-97px) rotate(-90deg);
+    }
+
+    .zodiac-ring span:nth-child(5) {
+        transform: rotate(120deg) translateY(-97px) rotate(-120deg);
+    }
+
+    .zodiac-ring span:nth-child(6) {
+        transform: rotate(150deg) translateY(-97px) rotate(-150deg);
+    }
+
+    .zodiac-ring span:nth-child(7) {
+        transform: rotate(180deg) translateY(-97px) rotate(-180deg);
+    }
+
+    .zodiac-ring span:nth-child(8) {
+        transform: rotate(210deg) translateY(-97px) rotate(-210deg);
+    }
+
+    .zodiac-ring span:nth-child(9) {
+        transform: rotate(240deg) translateY(-97px) rotate(-240deg);
+    }
+
+    .zodiac-ring span:nth-child(10) {
+        transform: rotate(270deg) translateY(-97px) rotate(-270deg);
+    }
+
+    .zodiac-ring span:nth-child(11) {
+        transform: rotate(300deg) translateY(-97px) rotate(-300deg);
+    }
+
+    .zodiac-ring span:nth-child(12) {
+        transform: rotate(330deg) translateY(-97px) rotate(-330deg);
+    }
+
+    .astrology-wheel .moon-circle {
+
+        width: 68px;
+        height: 68px;
+    }
+
+    .astrology-wheel .orbit-one,
+    .astrology-wheel .orbit-two {
+
+        width: 205px;
+        height: 85px;
+    }
+
+    .contact-form-wrapper {
+        padding: 20px 15px;
+    }
+
+    .feature-item {
+        gap: 12px;
+    }
+}
+
+
+/* =====================================================
+   LARGE SCREENS
+   1400px+
+===================================================== */
+
+@media (min-width: 1400px) {
+
+    .container,
+    .nav-container {
+        max-width: 1250px;
+    }
+
+    .hero {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+
+    /* Larger astrology */
+
+    .astrology-wheel {
+
+        right: 9%;
+
+        width: 520px;
+        height: 520px;
+    }
+
+    .zodiac-ring {
+
+        width: 440px;
+        height: 440px;
+    }
+
+    .zodiac-ring span:nth-child(1) {
+        transform: rotate(0deg) translateY(-220px) rotate(0deg);
+    }
+
+    .zodiac-ring span:nth-child(2) {
+        transform: rotate(30deg) translateY(-220px) rotate(-30deg);
+    }
+
+    .zodiac-ring span:nth-child(3) {
+        transform: rotate(60deg) translateY(-220px) rotate(-60deg);
+    }
+
+    .zodiac-ring span:nth-child(4) {
+        transform: rotate(90deg) translateY(-220px) rotate(-90deg);
+    }
+
+    .zodiac-ring span:nth-child(5) {
+        transform: rotate(120deg) translateY(-220px) rotate(-120deg);
+    }
+
+    .zodiac-ring span:nth-child(6) {
+        transform: rotate(150deg) translateY(-220px) rotate(-150deg);
+    }
+
+    .zodiac-ring span:nth-child(7) {
+        transform: rotate(180deg) translateY(-220px) rotate(-180deg);
+    }
+
+    .zodiac-ring span:nth-child(8) {
+        transform: rotate(210deg) translateY(-220px) rotate(-210deg);
+    }
+
+    .zodiac-ring span:nth-child(9) {
+        transform: rotate(240deg) translateY(-220px) rotate(-240deg);
+    }
+
+    .zodiac-ring span:nth-child(10) {
+        transform: rotate(270deg) translateY(-220px) rotate(-270deg);
+    }
+
+    .zodiac-ring span:nth-child(11) {
+        transform: rotate(300deg) translateY(-220px) rotate(-300deg);
+    }
+
+    .zodiac-ring span:nth-child(12) {
+        transform: rotate(330deg) translateY(-220px) rotate(-330deg);
+    }
+}
+/* =========================
+   MOBILE HAMBURGER MENU
+========================= */
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+/* =========================
+   MOBILE VIEW
+========================= */
+
+@media (max-width: 650px) {
+
+    .nav-container {
+        position: relative;
+        width: 94%;
+        min-height: 62px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    /* Show hamburger icon */
+    .menu-btn {
+        display: block;
+        z-index: 1002;
+    }
+
+    /* Hide menu initially */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 62px;
+        left: 0;
+        width: 100%;
+
+        background: rgba(255, 255, 255, 0.98);
+
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+
+        padding: 15px 20px;
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Show menu when clicked */
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu > a:not(.nav-btn) {
+        display: block;
+        width: 100%;
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+
+    .nav-menu .nav-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+        padding: 10px;
+        font-size: 12px;
     }
 }
