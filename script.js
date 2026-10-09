@@ -75,7 +75,7 @@ ${message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
 
-    const ownerNumber = "918494944434"; // Replace with your WhatsApp number in international format
+    const ownerNumber = "919030619639"; // Replace with your WhatsApp number in international format
 
     const whatsappURL =
         `https://wa.me/${ownerNumber}?text=${encodedMessage}`;
